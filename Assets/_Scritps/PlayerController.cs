@@ -12,7 +12,7 @@ public class PlayerController : NetworkBehaviour
     }
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) Destroy(this);
+        if (!IsOwner) this.enabled = false;
     }
 
 
@@ -59,7 +59,8 @@ public class PlayerController : NetworkBehaviour
             var dir = hitPoint - transform.position;
             var rot = Quaternion.LookRotation(dir);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _rotationSpeed * Time.deltaTime);
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _rotationSpeed * Time.deltaTime);
+            transform.rotation = rot;
         }
     }
 
